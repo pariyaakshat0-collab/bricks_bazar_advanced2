@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notification Test</title>
+</head>
+<body>
+    <h1>Notification System Test</h1>
+    <button onclick="testNotification()">Test Notification</button>
+    <button onclick="requestPermission()">Request Permission</button>
+    
+    <script>
+        function requestPermission() {
+            if ('Notification' in window) {
+                Notification.requestPermission().then(permission => {
+                    alert('Notification permission: ' + permission);
+                });
+            } else {
+                alert('Notifications not supported');
+            }
+        }
+        
+        function testNotification() {
+            if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification('Test Notification', {
+                    body: 'This is a test notification from BBMS',
+                    icon: '/favicon.ico'
+                });
+            } else {
+                alert('Please request permission first');
+            }
+        }
+    </script>
+</body>
+</html>
